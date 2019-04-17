@@ -1,0 +1,38 @@
+---
+title: "stat585-lab4-team7"
+author: "Brianna Lawton"
+date: "April 17, 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+##Reading the data into R using the API
+
+```{r}
+
+```
+
+##Cleaning the data in R
+
+```{r}
+
+```
+
+##The objective: shiny app should have at least two tabs:
+
+#one tab that summarizes a temporal (time -i.e. day; week; month) aspect in the data
+
+```{r}
+
+```
+#one tab that summarizes a spatial aspect in the data
+
+```{r}
+
+```
+
+#Note: Each tab should show a visualization (you could look into plotly for an interactive visualization) and have at least two widgets to change an aspect of what you show.
