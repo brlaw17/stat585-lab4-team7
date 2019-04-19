@@ -13,6 +13,12 @@ knitr::opts_chunk$set(echo = TRUE)
 ##Reading the data into R using the API
 
 ```{r}
+library(tidyverse)
+library(readr)
+data <- read_csv(file ="./data/story-sales.zip" )
+View(data)
+
+unique(data$City)
 
 ```
 
