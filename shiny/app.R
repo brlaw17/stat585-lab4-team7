@@ -1,4 +1,4 @@
-#install.packages("shinythemes")
+#install.packages("shinythemes") to run code
 shinyApp(
   ui = tagList(
     shinythemes::themeSelector(),
