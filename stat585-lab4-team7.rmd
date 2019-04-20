@@ -4,22 +4,21 @@ author: "Brianna Lawton"
 date: "April 17, 2019"
 output: html_document
 ---
-Read the file
 
 ```{r setup, include=FALSE}
-library(readr)
-library(jsonlite)
-data<- read_csv(file ="./data/story-sales.zip" )
+knitr::opts_chunk$set(echo = TRUE)
 ```
 
 
 ##Reading the data into R using the API
 
 ```{r}
-library(jsonlite)
-library(dplyr)
-URL=("https://data.iowa.gov/resource/m3tr-qhgy.json")
-d_ta<-jsonlite::fromJSON (URL)%>%filter(Country==Story) 
+library(tidyverse)
+library(readr)
+data <- read_csv(file ="./data/story-sales.zip" )
+View(data)
+
+unique(data$City)
 
 ```
 
