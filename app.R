@@ -31,8 +31,6 @@ ui <- fluidPage(
                 choices = levels(unique(df.map$City)), selected = "AMES")
   ),
   
-  titlePanel("Iowa Liquor Sales"),
-  
   sidebarPanel(
     selectInput("ZipCode", label = "ZipCode", 
                 choices = levels(unique(df.map$`Zip Code`)), selected = "50010")
