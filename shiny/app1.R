@@ -76,11 +76,11 @@ shinyApp(
   server = function(input, output) {
     output$tm <- renderPlot({
       if (input$radio==1)
-      gg<-data%>%group_by(year)%>%summarize(meansale=mean(sale,na.rm=TRUE))%>%ggplot(aes(x=year,y=meansale))+geom_point()
+      gg<-data%>%group_by(year)%>%summarize(meansale($)=mean(sale,na.rm=TRUE))%>%ggplot(aes(x=year,y=meansale))+geom_point()
       if (input$radio==2)
-      gg<-data%>%group_by(month)%>%summarize(meansale=mean(sale,na.rm=TRUE))%>%ggplot(aes(x=month,y=meansale))+geom_point()
+      gg<-data%>%group_by(month)%>%summarize(meansale($)=mean(sale,na.rm=TRUE))%>%ggplot(aes(x=month,y=meansale))+geom_point()
       if (input$radio==3)
-      gg<-data%>%group_by(day)%>%summarize(meansale=mean(sale,na.rm=TRUE))%>%ggplot(aes(x=day,y=meansale))+geom_point()
+      gg<-data%>%group_by(day)%>%summarize(meansale($)=mean(sale,na.rm=TRUE))%>%ggplot(aes(x=day,y=meansale))+geom_point()
       print(gg)
     })
     output$table <- renderTable({
