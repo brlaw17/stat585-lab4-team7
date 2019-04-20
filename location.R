@@ -19,7 +19,7 @@ location<-map(.x = data$`Store Location`,
               
               
 ########## map example for ames
-ames.data <- data %>% filter(City == "Ames")
+ames.data <- data %>% filter(City == "Ames" & `Zip Code`== 50010)
               
 amesmap <-
   leaflet() %>% addProviderTiles(providers$OpenStreetMap)

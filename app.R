@@ -51,7 +51,7 @@ server <- function(input, output) {
 
 
   output$map <-renderLeaflet({ 
-    df.map %>% filter(City == input$City ) %>%  
+    df.map %>% filter(City == input$City & `Zip Code`==input$ZipCode ) %>%  
     leaflet()%>%
     addTiles() %>%
     addMarkers(lng = ~long,
