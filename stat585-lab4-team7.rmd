@@ -25,7 +25,11 @@ unique(data$City)
 ##Cleaning the data in R
 
 ```{r}
-
+library(lubridate)
+data$new_date<- as.Date(data$Date, "%m/%d/%Y")
+data$month<-month(data$new_date)
+data$day<-day(data$new_date)
+data$year<-year(data$new_date)
 ```
 
 ##The objective: shiny app should have at least two tabs:
