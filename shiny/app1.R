@@ -1,3 +1,6 @@
+library(tidyverse)
+library(readr)
+
 #install.packages("shinythemes") to run code
 data <- read_csv(file ="../data/story-sales.zip" )
 library(lubridate)
