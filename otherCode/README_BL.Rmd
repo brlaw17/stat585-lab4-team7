@@ -1,5 +1,5 @@
 ---
-title: "stat585-lab4-team7"
+title: "README"
 author: "Brianna Lawton"
 date: "April 17, 2019"
 output: html_document
@@ -17,9 +17,7 @@ library(tidyverse)
 library(readr)
 data <- read_csv(file ="./data/story-sales.zip" )
 View(data)
-
 unique(data$City)
-
 ```
 
 ##Cleaning the data in R
@@ -37,12 +35,8 @@ data$year<-year(data$new_date)
 #one tab that summarizes a temporal (time -i.e. day; week; month) aspect in the data
 
 ```{r}
-
 ```
 #one tab that summarizes a spatial aspect in the data
 
 ```{r}
-
 ```
-
-#Note: Each tab should show a visualization (you could look into plotly for an interactive visualization) and have at least two widgets to change an aspect of what you show.

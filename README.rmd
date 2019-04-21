@@ -1,0 +1,40 @@
+---
+title: "stat585-lab4-team7"
+author: "Team 7"
+date: "April 17, 2019"
+output: html_document
+---
+
+
+Data cleaning is also written in "shiny/app.R"
+
+The shiny app can be launched by command "shiny::runApp("shiny")"
+
+Link to our github repo: https://github.com/brlaw17/stat585-lab4-team7.git
+
+
+Data cleaning 
+
+```{r}
+library(shiny)
+library(dplyr)
+library(readr)
+library(stringr)
+library(leaflet)
+data<- read_csv(file ="./data/story-sales.zip" )
+# clean Date and City
+newdat <- data %>% mutate(Date = lubridate::mdy(Date)) %>% 
+  mutate(City = toupper(City))
+
+# clean dataset at store level: use unique store name, extract Lat and Long for map
+storeinfo <- newdat %>% 
+  group_by(`Store Number`) %>% 
+  filter(grepl("\\(",`Store Location`)) %>% 
+  summarise(`Store Name` = unique(`Store Name`)[1], `Store Location` = unique(`Store Location`)[1]) %>% 
+  mutate(Lat = purrr::map_chr(`Store Location`, .f = function(t) {
+      t %>% str_extract_all("(?<=\\()[-0-9.]{1,}") %>% 
+      unlist()}) %>% as.numeric(), 
+      Long = purrr::map_chr(`Store Location`, .f = function(t) { 
+          t %>% str_extract_all( "[-0-9.]{1,}(?=\\))") %>% 
+          unlist()}) %>% as.numeric())
+```
