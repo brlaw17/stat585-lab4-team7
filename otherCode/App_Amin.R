@@ -9,19 +9,19 @@ data<- read_csv(file ="./data/story-sales.zip" )
 location<-map(.x = data$`Store Location`,
               .f = function(x) str_extract_all(x , pattern = "\\([^()]+\\)") ) %>%
   flatten() %>%
-   str_remove_all("[()]") %>%
-   str_split_fixed("\\,", 2) %>%
-   as.data.frame()
- names(location)<-c("lat", "long")
+  str_remove_all("[()]") %>%
+  str_split_fixed("\\,", 2) %>%
+  as.data.frame()
+names(location)<-c("lat", "long")
 
- data$long<-location$long%>% as.character() %>% as.numeric()
- data$lat<-location$lat%>% as.character() %>% as.numeric()
- data<- data[!is.na(data$long) & !is.na(data$lat),]
- data<- data %>% mutate(City= as.factor(City), `Zip Code`=as.factor(`Zip Code`))
+data$long<-location$long%>% as.character() %>% as.numeric()
+data$lat<-location$lat%>% as.character() %>% as.numeric()
+data<- data[!is.na(data$long) & !is.na(data$lat),]
+data<- data %>% mutate(City= as.factor(City), `Zip Code`=as.factor(`Zip Code`))
 
- df.map<-data %>% select(`Store Name`, Address,
-                 City, `Store Location`,
-                 long, lat, `Zip Code`) %>% unique()
+df.map<-data %>% select(`Store Name`, Address,
+                        City, `Store Location`,
+                        long, lat, `Zip Code`) %>% unique()
 ui <- fluidPage(
   
   titlePanel("Iowa Liquor Sales"),
@@ -46,15 +46,15 @@ ui <- fluidPage(
 
 
 server <- function(input, output) {
-
-
+  
+  
   output$map <-renderLeaflet({ 
     df.map %>% filter(City == input$City & `Zip Code`==input$ZipCode ) %>%  
-    leaflet()%>%
-    addTiles() %>%
-    addMarkers(lng = ~long,
-               lat = ~lat,
-               popup = ~`Store Name`)
+      leaflet()%>%
+      addTiles() %>%
+      addMarkers(lng = ~long,
+                 lat = ~lat,
+                 popup = ~`Store Name`)
   })
 }
 

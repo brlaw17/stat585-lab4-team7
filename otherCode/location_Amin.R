@@ -18,21 +18,21 @@ location<-map(.x = data$`Store Location`,
               data<- data %>% mutate(City= as.factor(City))
               
               
-########## map example for ames
-ames.data <- data %>% filter(City == "Ames" & `Zip Code`== 50010)
+              ########## map example for ames
+              ames.data <- data %>% filter(City == "Ames" & `Zip Code`== 50010)
               
-amesmap <-
-  leaflet() %>% addProviderTiles(providers$OpenStreetMap)
-amesmap %>% addMarkers(
-  lng = ames.data$long[1:10],
-  lat = ames.data$lat[1:10],
-  popup = ames.data$`Store Name`[1:10]
-)
-
+              amesmap <-
+                leaflet() %>% addProviderTiles(providers$OpenStreetMap)
+              amesmap %>% addMarkers(
+                lng = ames.data$long[1:10],
+                lat = ames.data$lat[1:10],
+                popup = ames.data$`Store Name`[1:10]
+              )
               
               
-#### dataframe just for map
-df <- data %>% select(`Store Name`, Address,
-                      City, `Store Location`, long, lat)
-
-df.map <- df[!duplicated(df), ]
+              
+              #### dataframe just for map
+              df <- data %>% select(`Store Name`, Address,
+                                    City, `Store Location`, long, lat)
+              
+              df.map <- df[!duplicated(df), ]

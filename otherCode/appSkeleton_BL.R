@@ -1,17 +1,4 @@
-library(tidyverse)
-library(readr)
-
 #install.packages("shinythemes") to run code
-data <- read_csv(file ="../data/story-sales.zip" )
-library(lubridate)
-data$new_date<- as.Date(data$Date, "%m/%d/%Y")
-data$month<-month(data$new_date)
-data$day<-day(data$new_date)
-data$year<-year(data$new_date)
-data$sale<-data$'Sale (Dollars)'
-data%>%group_by(year)%>%summarize(sum(sale))
-data%>%group_by(year)%>%summarize(meansale=mean(sale,na.rm=TRUE))%>%ggplot(aes(x=year,y=meansale))+geom_point()
-
 shinyApp(
   ui = tagList(
     shinythemes::themeSelector(),
@@ -72,19 +59,11 @@ shinyApp(
                )
       )   
       #tabPanel("Navbar 3", "This panel is intentionally left blank")
-    ),
-    mainPanel(plotOutput("tm")#plot out put, we can also have text or .. output, we need a corresponding line in server like output$hist)
     )
   ),
   server = function(input, output) {
-    output$tm <- renderPlot({
-      if (input$radio==1)
-      gg<-data%>%group_by(year)%>%summarize(meansale_DOLLAR=mean(sale,na.rm=TRUE))%>%ggplot(aes(x=year,y=meansale_DOLLAR))+geom_point()
-      if (input$radio==2)
-      gg<-data%>%group_by(month)%>%summarize(meansale_DOLLAR=mean(sale,na.rm=TRUE))%>%ggplot(aes(x=month,y=meansale_DOLLAR))+geom_point()
-      if (input$radio==3)
-      gg<-data%>%group_by(day)%>%summarize(meansale_DOLLAR=mean(sale,na.rm=TRUE))%>%ggplot(aes(x=day,y=meansale_DOLLAR))+geom_point()
-      print(gg)
+    output$txtout <- renderText({
+      paste(input$txt, input$slider, format(input$date), sep = ", ")
     })
     output$table <- renderTable({
       head(cars, 4)
