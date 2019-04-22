@@ -94,29 +94,29 @@ server <- function(input, output) {
       filter(!is.na(`Sale (Dollars)`))
   })
   # for plot under Spacial tab
-  output$map <-renderLeaflet({ 
-    if (input$res2=="sale") {
-      spacialSet() %>% 
-        leaflet()%>%
-        addTiles() %>%
-        addMarkers(lng = ~Long,
-                   lat = ~Lat,
-                   popup = ~paste("Store Name: ", spacialSet()$`Store Name`, "<br>",
-                                  "Sale (Dollars): ", spacialSet()$`Sale (Dollars)`, "<br>"), 
-                   clusterOptions = leaflet::markerClusterOptions())
-    } else{
-      spacialSet() %>% 
-        leaflet()%>%
-        addTiles() %>%
-        addMarkers(lng = ~Long,
-                   lat = ~Lat,
-                   popup = ~paste("Store Name: ", spacialSet()$`Store Name`, "<br>",
-                                  "Volume Sold (Dollars): ", spacialSet()$`Volume Sold (Liters)`, "<br>"), 
-                   clusterOptions = leaflet::markerClusterOptions())
-      
-    }
-  })
-  
-}
+#   output$map <-renderLeaflet({ 
+#     if (input$res2=="sale") {
+#       spacialSet() %>% 
+#         leaflet()%>%
+#         addTiles() %>%
+#         addMarkers(lng = ~Long,
+#                    lat = ~Lat,
+#                    popup = ~paste("Store Name: ", spacialSet()$`Store Name`, "<br>",
+#                                   "Sale (Dollars): ", spacialSet()$`Sale (Dollars)`, "<br>"), 
+#                    clusterOptions = leaflet::markerClusterOptions())
+#     } else{
+#       spacialSet() %>% 
+#         leaflet()%>%
+#         addTiles() %>%
+#         addMarkers(lng = ~Long,
+#                    lat = ~Lat,
+#                    popup = ~paste("Store Name: ", spacialSet()$`Store Name`, "<br>",
+#                                   "Volume Sold (Dollars): ", spacialSet()$`Volume Sold (Liters)`, "<br>"), 
+#                    clusterOptions = leaflet::markerClusterOptions())
+#       
+#     }
+#   })
+#   
+# }
 
 shinyApp(ui = ui, server = server)
